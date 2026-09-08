@@ -1,2 +1,2 @@
-# PPOIS Lab 1
+# PPOIS Labs
 
