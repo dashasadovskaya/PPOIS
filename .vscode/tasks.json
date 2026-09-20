@@ -1,0 +1,43 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Main Program",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-std=c++17",
+                "-Wall",
+                "-Wextra",
+                "-g3",
+                "-Iinc",
+                "main.cpp",
+                "src/Rectangle.cpp",
+                "-o",
+                "output/rect.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Build Tests",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-std=c++17",
+                "-Wall",
+                "-Wextra",
+                "-g3",
+                "-Iinc",
+                "tests/tests.cpp",
+                "src/Rectangle.cpp",
+                "-o",
+                "output/tests.exe"
+            ],
+            "problemMatcher": ["$gcc"]
+        }
+    ]
+}
