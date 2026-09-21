@@ -8,7 +8,6 @@
 #include "Rectangle.h"
 #include <algorithm>
 
-// ---------------- Конструкторы / деструктор ----------------
 
 Rectangle::Rectangle()
     : left(0), bottom(0), right(0), top(0) {}
@@ -34,14 +33,12 @@ Rectangle& Rectangle::operator=(const Rectangle& other) {
 
 Rectangle::~Rectangle() = default;
 
-// ---------------- Внутреннее ----------------
 
 void Rectangle::normalize() {
     if (left > right)  std::swap(left, right);
     if (bottom > top)  std::swap(bottom, top);
 }
 
-// ---------------- Геттеры ----------------
 
 int Rectangle::getLeft()   const { return left; }
 int Rectangle::getBottom() const { return bottom; }
@@ -54,7 +51,6 @@ long long Rectangle::getArea() const {
     return static_cast<long long>(getWidth()) * getHeight();
 }
 
-// ---------------- Модификаторы ----------------
 
 Rectangle& Rectangle::move(int dx, int dy) {
     left   += dx;
@@ -72,7 +68,6 @@ Rectangle& Rectangle::resize(int newWidth, int newHeight) {
     return *this;
 }
 
-// ---------------- Инкремент / декремент ----------------
 
 Rectangle& Rectangle::operator++() {
     --left;
@@ -104,7 +99,6 @@ Rectangle Rectangle::operator--(int) {
     return tmp;
 }
 
-// ---------------- Объединение / пересечение ----------------
 
 Rectangle Rectangle::operator+(const Rectangle& other) const {
     return Rectangle(
@@ -137,7 +131,6 @@ Rectangle& Rectangle::operator-=(const Rectangle& other) {
     return *this;
 }
 
-// ---------------- Сравнение ----------------
 
 bool Rectangle::operator==(const Rectangle& other) const {
     return left   == other.left   &&
@@ -150,7 +143,6 @@ bool Rectangle::operator!=(const Rectangle& other) const {
     return !(*this == other);
 }
 
-// ---------------- Потоковые операторы ----------------
 
 std::ostream& operator<<(std::ostream& os, const Rectangle& r) {
     os << '(' << r.left << ',' << r.bottom << ")-("
@@ -164,7 +156,6 @@ std::istream& operator>>(std::istream& is, Rectangle& r) {
     return is;
 }
 
-// ---------------- Свободные функции ----------------
 bool intersects(const Rectangle& a, const Rectangle& b) {
     return std::max(a.getLeft(), b.getLeft()) < std::min(a.getRight(), b.getRight()) &&
            std::max(a.getBottom(), b.getBottom()) < std::min(a.getTop(), b.getTop());

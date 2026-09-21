@@ -9,7 +9,6 @@
 #include <sstream>
 #include "Rectangle.h"
 
-// ---------------- Конструкторы ----------------
 
 TEST(DefaultCtor) {
     Rectangle r;
@@ -45,13 +44,11 @@ TEST(SelfAssign) {
     CHECK_EQUAL(7, a.getTop());
 }
 
-// ---------------- Геттеры ----------------
 
 TEST(Width)  { Rectangle r(0, 0, 4, 3); CHECK_EQUAL(4, r.getWidth()); }
 TEST(Height) { Rectangle r(0, 0, 4, 3); CHECK_EQUAL(3, r.getHeight()); }
 TEST(Area)   { Rectangle r(0, 0, 4, 3); CHECK_EQUAL(12, r.getArea()); }
 
-// ---------------- move / resize ----------------
 
 TEST(Move) {
     Rectangle r(0, 0, 2, 2);
@@ -76,7 +73,6 @@ TEST(ResizeNegativeClampedToZero) {
     CHECK_EQUAL(0, r.getHeight());
 }
 
-// ---------------- ++ / -- ----------------
 
 TEST(PrefixIncrement) {
     Rectangle r(0, 0, 2, 2);
@@ -120,7 +116,6 @@ TEST(DecrementDoesNotGoNegative) {
     CHECK_EQUAL(0, r.getHeight());
 }
 
-// ---------------- operator+ ----------------
 
 TEST(Union) {
     Rectangle a(0, 0, 2, 2);
@@ -150,7 +145,6 @@ TEST(UnionAssign) {
     CHECK_EQUAL(7, a.getRight());
 }
 
-// ---------------- operator- ----------------
 
 TEST(Intersection) {
     Rectangle a(0, 0, 5, 5);
@@ -178,7 +172,6 @@ TEST(IntersectionAssign) {
     CHECK_EQUAL(5, a.getRight());
 }
 
-// ---------------- == / != ----------------
 
 TEST(Equality) {
     Rectangle a(1, 2, 3, 4);
@@ -193,7 +186,6 @@ TEST(Inequality) {
     CHECK(a != b);
 }
 
-// ---------------- Потоки ----------------
 
 TEST(OutputFormat) {
     Rectangle r(1, 2, 3, 4);
@@ -210,7 +202,6 @@ TEST(InputParse) {
     CHECK_EQUAL(4, r.getTop());
 }
 
-// ---------------- intersects ----------------
 
 TEST(IntersectsTrue) {
     CHECK(intersects(Rectangle(0, 0, 5, 5), Rectangle(3, 3, 8, 8)));
@@ -224,7 +215,6 @@ TEST(IntersectsFalse) {
     CHECK(!intersects(Rectangle(0, 0, 2, 2), Rectangle(10, 10, 12, 12)));
 }
 
-// ---------------- Дополнительные ----------------
 
 TEST(SelfUnionEqualsSelf) {
     Rectangle a(1, 2, 3, 4);
@@ -275,7 +265,6 @@ TEST(IntersectionCommutative) {
     CHECK((a - b) == (b - a));
 }
 
-// ---------------- Запуск ----------------
 
 /**
  * @brief Запускает все тесты.
