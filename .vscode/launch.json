@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/projects/ППОИС/tests",
-      "program": "d:/projects/ППОИС/tests/build/Debug/outDebug",
+      "cwd": "d:/projects/ППОИС/Lab1/Multiset/src",
+      "program": "d:/projects/ППОИС/Lab1/Multiset/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
