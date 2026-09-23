@@ -6,7 +6,7 @@
  * @date 2026
  */
 
-#include "inc/Rectangle.h"
+#include "Rectangle.h"
 #include <iostream>
 #include <limits>
 
