@@ -1,0 +1,436 @@
+subject_domain_of_procurement
+=> nrel_main_idtf:
+    [Предметная область управления закупками]
+    (* <- lang_ru;; *);
+<- concept_subject_domain;
+=> nrel_ontology:
+    structural_specification_of_procurement;
+    set_theoretic_ontology_of_procurement;;
+
+// -------------------- Структурная спецификация --------------------
+
+structural_specification_of_procurement = [*
+<- concept_structural_specification_of_subject_domain;;
+
+subject_domain_of_procurement = [*
+-> rrel_maximum_studied_object_class:
+    concept_supplier;
+-> rrel_not_maximum_studied_object_class:
+    concept_product;
+    concept_category;
+    concept_employee;
+    concept_department;
+    concept_purchase_request;
+    concept_contract;
+    concept_invoice;
+    concept_payment;
+    concept_delivery;
+-> rrel_explored_relation:
+    nrel_hasSupplier;
+    nrel_hasContract;
+    nrel_hasInvoice;
+    nrel_hasPayment;
+    nrel_hasDelivery;
+    nrel_createsRequest;
+    nrel_belongsToDepartment;
+    nrel_belongsToCategory;
+    nrel_inclusion;
+    nrel_subdividing;
+*];;
+
+// -------------------- Иерархия предметных областей --------------------
+
+subject_domain_of_procurement
+<= nrel_child_subject_domain:
+    subject_domain_of_business;
+=> nrel_child_subject_domain:
+    subject_domain_of_supplier_selection;
+    subject_domain_of_contract_management;;
+
+subject_domain_of_business
+<- concept_subject_domain;
+=> nrel_main_idtf:
+    [Предметная область бизнеса]
+    (* <- lang_ru;; *);;
+
+subject_domain_of_supplier_selection
+<- concept_subject_domain;
+=> nrel_main_idtf:
+    [Предметная область выбора поставщиков]
+    (* <- lang_ru;; *);;
+
+subject_domain_of_contract_management
+<- concept_subject_domain;
+=> nrel_main_idtf:
+    [Предметная область управления договорами]
+    (* <- lang_ru;; *);;
+
+// -------------------- Максимальный класс --------------------
+
+concept_supplier
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Поставщик]
+    (* <- lang_ru;; *);
+=> nrel_main_idtf:
+    [supplier]
+    (* <- lang_en;; *);;
+
+// -------------------- Немаксимальные классы --------------------
+
+concept_product
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Товар]
+    (* <- lang_ru;; *);;
+
+concept_category
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Категория]
+    (* <- lang_ru;; *);;
+
+concept_employee
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Сотрудник]
+    (* <- lang_ru;; *);;
+
+concept_department
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Подразделение]
+    (* <- lang_ru;; *);;
+
+concept_purchase_request
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Заявка на покупку]
+    (* <- lang_ru;; *);;
+
+concept_contract
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Договор]
+    (* <- lang_ru;; *);;
+
+concept_invoice
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Счёт]
+    (* <- lang_ru;; *);;
+
+concept_payment
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Платёж]
+    (* <- lang_ru;; *);;
+
+concept_delivery
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Поставка]
+    (* <- lang_ru;; *);;
+
+// -------------------- Теоретико-множественная онтология --------------------
+
+set_theoretic_ontology_of_procurement = [*
+<- concept_set_theoretic_ontology_of_subject_domain;;
+
+// Разбиение 1: Поставщик → Локальный + Иностранный
+concept_supplier
+=> nrel_subdividing: {
+    concept_local_supplier;
+    concept_foreign_supplier
+};;
+
+// Разбиение 2: Заявка → Одобренная + Отклонённая + В ожидании
+concept_purchase_request
+=> nrel_subdividing: {
+    concept_approved_request;
+    concept_rejected_request;
+    concept_pending_request
+};;
+
+// Разбиение 3: Счёт → Оплаченный + Неоплаченный
+concept_invoice
+=> nrel_subdividing: {
+    concept_paid_invoice;
+    concept_unpaid_invoice
+};;
+
+// Разбиение 4: Договор → Рамочный + Разовый
+concept_contract
+=> nrel_subdividing: {
+    concept_framework_contract;
+    concept_one_time_contract
+};;
+*];;
+
+// -------------------- Подклассы для разбиений --------------------
+
+concept_local_supplier
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Локальный поставщик]
+    (* <- lang_ru;; *);;
+
+concept_foreign_supplier
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Иностранный поставщик]
+    (* <- lang_ru;; *);;
+
+concept_approved_request
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Одобренная заявка]
+    (* <- lang_ru;; *);;
+
+concept_rejected_request
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Отклонённая заявка]
+    (* <- lang_ru;; *);;
+
+concept_pending_request
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Заявка в ожидании]
+    (* <- lang_ru;; *);;
+
+concept_paid_invoice
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Оплаченный счёт]
+    (* <- lang_ru;; *);;
+
+concept_unpaid_invoice
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Неоплаченный счёт]
+    (* <- lang_ru;; *);;
+
+concept_framework_contract
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Рамочный договор]
+    (* <- lang_ru;; *);;
+
+concept_one_time_contract
+<- sc_node_class;
+=> nrel_main_idtf:
+    [Разовый договор]
+    (* <- lang_ru;; *);;
+
+// -------------------- Исследуемые отношения --------------------
+
+nrel_hasSupplier
+<- sc_node_non_role_relation;
+=> nrel_main_idtf:
+    [имеет поставщика*]
+    (* <- lang_ru;; *);
+=> nrel_first_domain:
+    concept_product;
+=> nrel_second_domain:
+    concept_supplier;;
+
+nrel_hasContract
+<- sc_node_non_role_relation;
+=> nrel_main_idtf:
+    [иметь договор*]
+    (* <- lang_ru;; *);
+=> nrel_first_domain:
+    concept_purchase_request;
+=> nrel_second_domain:
+    concept_contract;;
+
+nrel_hasInvoice
+<- sc_node_non_role_relation;
+=> nrel_main_idtf:
+    [иметь счёт*]
+    (* <- lang_ru;; *);
+=> nrel_first_domain:
+    concept_contract;
+=> nrel_second_domain:
+    concept_invoice;;
+
+nrel_hasPayment
+<- sc_node_non_role_relation;
+=> nrel_main_idtf:
+    [иметь платёж*]
+    (* <- lang_ru;; *);
+=> nrel_first_domain:
+    concept_invoice;
+=> nrel_second_domain:
+    concept_payment;;
+
+nrel_hasDelivery
+<- sc_node_non_role_relation;
+=> nrel_main_idtf:
+    [иметь поставку*]
+    (* <- lang_ru;; *);
+=> nrel_first_domain:
+    concept_contract;
+=> nrel_second_domain:
+    concept_delivery;;
+
+nrel_createsRequest
+<- sc_node_non_role_relation;
+=> nrel_main_idtf:
+    [создаёт заявку*]
+    (* <- lang_ru;; *);
+=> nrel_first_domain:
+    concept_employee;
+=> nrel_second_domain:
+    concept_purchase_request;;
+
+nrel_belongsToDepartment
+<- sc_node_non_role_relation;
+=> nrel_main_idtf:
+    [принадлежит подразделению*]
+    (* <- lang_ru;; *);
+=> nrel_first_domain:
+    concept_employee;
+=> nrel_second_domain:
+    concept_department;;
+
+nrel_belongsToCategory
+<- sc_node_non_role_relation;
+=> nrel_main_idtf:
+    [принадлежит категории*]
+    (* <- lang_ru;; *);
+=> nrel_first_domain:
+    concept_product;
+=> nrel_second_domain:
+    concept_category;;
+
+nrel_inclusion
+<- sc_node_non_role_relation;
+=> nrel_main_idtf:
+    [включение*]
+    (* <- lang_ru;; *);;
+
+nrel_subdividing
+<- sc_node_non_role_relation;
+=> nrel_main_idtf:
+    [разбиение*]
+    (* <- lang_ru;; *);;
+
+// -------------------- Примеры экземпляров --------------------
+
+Department_IT
+<- concept_department;
+=> nrel_main_idtf:
+    [Отдел IT]
+    (* <- lang_ru;; *);;
+
+Department_Logistics
+<- concept_department;
+=> nrel_main_idtf:
+    [Отдел логистики]
+    (* <- lang_ru;; *);;
+
+Employee_Ivanov
+<- concept_employee;
+=> nrel_main_idtf:
+    [Иванов И.И.]
+    (* <- lang_ru;; *);;
+
+Employee_Petrova
+<- concept_employee;
+=> nrel_main_idtf:
+    [Петрова П.П.]
+    (* <- lang_ru;; *);
+=> nrel_belongsToDepartment:
+    Department_Logistics;;
+
+Product_Laptop_Lenovo
+<- concept_product;
+=> nrel_main_idtf:
+    [Ноутбук Lenovo]
+    (* <- lang_ru;; *);
+=> nrel_hasSupplier:
+    Supplier_OJSC_TechnoPark;
+=> nrel_belongsToCategory:
+    Category_IT_Equipment;;
+
+Product_Printer_HP
+<- concept_product;
+=> nrel_main_idtf:
+    [Принтер HP]
+    (* <- lang_ru;; *);
+=> nrel_hasSupplier:
+    Supplier_LLC_LogisticPlus;;
+
+Category_IT_Equipment
+<- concept_category;
+=> nrel_main_idtf:
+    [IT-оборудование]
+    (* <- lang_ru;; *);;
+
+Supplier_OJSC_TechnoPark
+<- concept_supplier;
+=> nrel_main_idtf:
+    [ОАО «ТехноПарк»]
+    (* <- lang_ru;; *);;
+
+Supplier_LLC_LogisticPlus
+<- concept_supplier;
+=> nrel_main_idtf:
+    [ООО «ЛогистикПлюс»]
+    (* <- lang_ru;; *);;
+
+Request_REQ_2024_001
+<- concept_purchase_request;
+=> nrel_main_idtf:
+    [Заявка REQ-2024-001]
+    (* <- lang_ru;; *);
+=> nrel_createsRequest:
+    Employee_Ivanov;
+=> nrel_hasContract:
+    Contract_C_2024_001;;
+
+Contract_C_2024_001
+<- concept_contract;
+=> nrel_main_idtf:
+    [Договор C-2024-001]
+    (* <- lang_ru;; *);
+=> nrel_hasInvoice:
+    Invoice_INV_2024_001;
+=> nrel_hasDelivery:
+    Delivery_DEL_2024_001;;
+
+Invoice_INV_2024_001
+<- concept_invoice;
+=> nrel_main_idtf:
+    [Счёт INV-2024-001]
+    (* <- lang_ru;; *);
+=> nrel_hasPayment:
+    Payment_PAY_2024_001;;
+
+Payment_PAY_2024_001
+<- concept_payment;
+=> nrel_main_idtf:
+    [Платёж PAY-2024-001]
+    (* <- lang_ru;; *);;
+
+Delivery_DEL_2024_001
+<- concept_delivery;
+=> nrel_main_idtf:
+    [Поставка DEL-2024-001]
+    (* <- lang_ru;; *);;
+
+// -------------------- Языковые метки --------------------
+
+lang_ru
+<- sc_node_class;
+=> nrel_main_idtf:
+    [русский язык]
+    (* <- lang_ru;; *);;
+
+lang_en
+<- sc_node_class;
+=> nrel_main_idtf:
+    [английский язык]
+    (* <- lang_en;; *);;

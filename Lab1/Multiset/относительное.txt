@@ -1,0 +1,26 @@
+nrel_hasSupplier
+=> nrel_main_idtf:
+    [имеет поставщика*]
+    (* <- lang_ru;; *);
+=> nrel_main_idtf:
+    [has supplier*]
+    (* <- lang_en;; *);
+<- rrel_explored_relation:
+    subject_domain_of_procurement;
+=> nrel_definitional_domain:
+    ...
+    (*
+        <= nrel_set_union: {
+            concept_product;
+            concept_supplier
+        };;
+    *);
+=> nrel_first_domain:
+    concept_product;
+=> nrel_second_domain:
+    concept_supplier;
+-> rrel_example:
+    (Product_Laptop_Lenovo => nrel_hasSupplier: Supplier_OJSC_TechnoPark);
+=> nrel_definition:
+    [Товар имеет поставщика — это отношение, связывающее товар с поставщиком, который его поставляет.]
+    (* <- lang_ru;; *);;

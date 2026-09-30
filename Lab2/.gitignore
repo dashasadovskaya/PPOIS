@@ -1,0 +1,17 @@
+# Артефакты сборки
+output/
+build/
+docs/
+*.exe
+*.o
+*.obj
+*.dll
+*.a
+*.so
+
+# VS Code
+.vscode/
+
+# Временные
+*.tmp
+*.log
