@@ -816,3 +816,4 @@ public:
     void addCabinet() { ++cabinetCount; }
     int cabinets() const { return cabinetCount; }
 };
+
